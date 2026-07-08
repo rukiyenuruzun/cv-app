@@ -74,8 +74,8 @@ export default function Home() {
           topOffset = prev.y + 80;
         }
 
-        const clampedLeft = Math.max(10, Math.min(leftOffset, window.innerWidth - 430));
-        const clampedTop = Math.max(10, Math.min(topOffset, window.innerHeight - 200));
+        const clampedLeft = Math.max(40, Math.min(leftOffset, window.innerWidth - 560));
+        const clampedTop = Math.max(40, Math.min(topOffset, window.innerHeight - 300));
 
         return (
           <AdPopup
@@ -271,7 +271,7 @@ export default function Home() {
 }
 
 function SkillWord({ text, index }: { text: string; index: number }) {
-  const delay = index * 120;
+  const delay = index * 60;
   return (
     <span
       className="skill-pop"

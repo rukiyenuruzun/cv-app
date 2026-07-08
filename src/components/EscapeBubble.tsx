@@ -69,7 +69,7 @@ export default function EscapeBubble({ label, onCatch, disabled }: EscapeBubbleP
           fontSize: 16,
           fontWeight: 700,
           color: "#fff",
-          background: "transparent",
+          background: "#14181c",
           border: "2px solid #e74c3c",
           borderRadius: 30,
           cursor: "pointer",

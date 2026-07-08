@@ -29,7 +29,7 @@ export default function AdPopup({
     position: "fixed",
     left,
     top,
-    width: 420,
+    width: 520,
     background: "#fff",
     borderRadius: 8,
     boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
@@ -105,8 +105,8 @@ export default function AdPopup({
               src={leftImage}
               alt=""
               style={{
-                width: 90,
-                height: 90,
+                width: 130,
+                height: 130,
                 objectFit: "cover",
                 borderRadius: 8,
               }}
@@ -119,8 +119,8 @@ export default function AdPopup({
               src={rightImage}
               alt=""
               style={{
-                width: 120,
-                height: 80,
+                width: 180,
+                height: 120,
                 objectFit: "cover",
                 borderRadius: 8,
                 ...(sticker
