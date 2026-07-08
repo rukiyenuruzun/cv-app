@@ -20,12 +20,12 @@ export const cvData = {
     detail: "%100 İngilizce eğitim",
     courses: ["Veri Yapıları", "Algoritmalar", "Nesne Yönelimli Programlama"],
   },
-  skills: [
-    "Java", "C", "Dart", "Python",
-    "Flutter", "Django",
-    "Git", "GitHub", "MySQL",
-    "Eclipse", "VS Code", "Android Studio",
-  ],
+  skills: {
+    languages: ["Java", "C", "Dart", "Python"],
+    frameworks: ["Flutter", "Django"],
+    tools: ["Git", "GitHub", "MySQL", "Eclipse", "VS Code", "Android Studio"],
+    spoken: ["Türkçe (Anadil)", "İngilizce (Akıcı)"],
+  },
   projects: [
     {
       title: "SmartBike",

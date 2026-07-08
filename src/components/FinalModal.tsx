@@ -25,7 +25,7 @@ export default function FinalModal({ onClose }: FinalModalProps) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        background: "rgba(0,0,0,0.7)",
+        background: "rgba(0,0,0,0.85)",
         zIndex: 20000,
       }}
       onClick={(e) => {
@@ -36,16 +36,15 @@ export default function FinalModal({ onClose }: FinalModalProps) {
         style={{
           background: "#1c2329",
           borderRadius: 12,
-          width: 760,
-          maxWidth: "90vw",
-          maxHeight: "85vh",
+          width: 960,
+          maxWidth: "95vw",
+          maxHeight: "90vh",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
           position: "relative",
         }}
       >
-        {/* Kapat + Ok tuşları */}
         <div
           style={{
             position: "absolute",
@@ -62,9 +61,9 @@ export default function FinalModal({ onClose }: FinalModalProps) {
               background: "transparent",
               border: "none",
               color: "#9ab",
-              fontSize: 20,
+              fontSize: 22,
               cursor: "pointer",
-              padding: "2px 6px",
+              padding: "4px 10px",
               borderRadius: 4,
             }}
             title="Kapat"
@@ -73,7 +72,6 @@ export default function FinalModal({ onClose }: FinalModalProps) {
           </button>
         </div>
 
-        {/* Sol: Afiş / CV */}
         <div
           style={{
             display: "flex",
@@ -83,69 +81,62 @@ export default function FinalModal({ onClose }: FinalModalProps) {
         >
           <div
             style={{
-              width: 280,
-              minWidth: 200,
-              padding: 20,
+              width: 400,
+              minWidth: 350,
+              padding: 24,
               display: "flex",
               flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "flex-start",
               borderRight: "1px solid #2a3a4a",
+              overflow: "hidden",
             }}
           >
             <div
               style={{
-                width: "100%",
-                aspectRatio: "2/3",
-                background: "#14181c",
+                flex: 1,
+                overflow: "auto",
                 borderRadius: 8,
-                overflow: "hidden",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
                 border: "1px solid #2a3a4a",
+                background: "#fff",
               }}
             >
               <FullCV />
             </div>
           </div>
 
-          {/* Sağ: Puanlama + Yorum */}
           <div
             style={{
               flex: 1,
-              padding: "40px 24px 24px 24px",
+              padding: "44px 28px 28px 28px",
               display: "flex",
               flexDirection: "column",
-              gap: 16,
+              gap: 18,
               overflowY: "auto",
             }}
           >
             <h2
               style={{
                 color: "#fff",
-                fontSize: 18,
+                fontSize: 22,
                 fontWeight: 600,
                 margin: 0,
               }}
             >
               Rukiye Nur Uzun
             </h2>
-            <p style={{ color: "#9ab", fontSize: 13, margin: 0 }}>
+            <p style={{ color: "#9ab", fontSize: 14, margin: 0 }}>
               Computer Engineering Student
             </p>
 
-            {/* Yıldızlar */}
             <div>
-              <p style={{ color: "#9ab", fontSize: 12, marginBottom: 6, fontWeight: 600 }}>
+              <p style={{ color: "#9ab", fontSize: 13, marginBottom: 8, fontWeight: 600 }}>
                 Puanın
               </p>
-              <div style={{ display: "flex", gap: 4 }}>
+              <div style={{ display: "flex", gap: 6 }}>
                 {[1, 2, 3, 4, 5].map((star) => (
                   <span
                     key={star}
                     style={{
-                      fontSize: 28,
+                      fontSize: 34,
                       cursor: submitted ? "default" : "pointer",
                       color:
                         star <= (hoverRating || rating) ? "#f5c518" : "#2a3a4a",
@@ -161,9 +152,8 @@ export default function FinalModal({ onClose }: FinalModalProps) {
               </div>
             </div>
 
-            {/* Yorum */}
             <div style={{ flex: 1 }}>
-              <p style={{ color: "#9ab", fontSize: 12, marginBottom: 6, fontWeight: 600 }}>
+              <p style={{ color: "#9ab", fontSize: 13, marginBottom: 8, fontWeight: 600 }}>
                 Yorumun
               </p>
               <textarea
@@ -173,12 +163,12 @@ export default function FinalModal({ onClose }: FinalModalProps) {
                 disabled={submitted}
                 style={{
                   width: "100%",
-                  minHeight: 100,
+                  minHeight: 120,
                   background: "#14181c",
                   border: "1px solid #2a3a4a",
                   borderRadius: 6,
                   color: "#e0e0e0",
-                  padding: 10,
+                  padding: 12,
                   fontSize: 13,
                   resize: "vertical",
                   fontFamily: "inherit",
@@ -186,7 +176,6 @@ export default function FinalModal({ onClose }: FinalModalProps) {
               />
             </div>
 
-            {/* Gönder Butonu */}
             <div>
               {submitted ? (
                 <div
@@ -195,23 +184,23 @@ export default function FinalModal({ onClose }: FinalModalProps) {
                     alignItems: "center",
                     gap: 8,
                     color: "#2ecc71",
-                    fontSize: 14,
+                    fontSize: 15,
                     fontWeight: 600,
                   }}
                 >
-                  <span style={{ fontSize: 20 }}>✓</span>
+                  <span style={{ fontSize: 22 }}>✓</span>
                   Gönderildi
                 </div>
               ) : (
                 <button
                   onClick={handleSubmit}
                   style={{
-                    padding: "8px 24px",
+                    padding: "10px 28px",
                     background: rating > 0 ? "#e74c3c" : "#2a3a4a",
                     color: "#fff",
                     border: "none",
                     borderRadius: 20,
-                    fontSize: 13,
+                    fontSize: 14,
                     fontWeight: 600,
                     cursor: rating > 0 ? "pointer" : "not-allowed",
                   }}

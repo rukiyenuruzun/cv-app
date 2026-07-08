@@ -25,61 +25,17 @@ export default function AdPopup({
 }: AdPopupProps) {
   const [tooltip, setTooltip] = useState(false);
 
-  const closeBtn = (
-    <div
-      style={{
-        position: "absolute",
-        top: 6,
-        right: 6,
-        width: 24,
-        height: 24,
-        background: "#e74c3c",
-        borderRadius: "50%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "default",
-        zIndex: 1,
-      }}
-      onMouseEnter={() => setTooltip(true)}
-      onMouseLeave={() => setTooltip(false)}
-    >
-      <span style={{ color: "#fff", fontSize: 14, fontWeight: "bold", lineHeight: 1 }}>
-        ✕
-      </span>
-      {tooltip && (
-        <div
-          style={{
-            position: "absolute",
-            top: -28,
-            right: 0,
-            background: "#333",
-            color: "#fff",
-            padding: "3px 8px",
-            borderRadius: 4,
-            fontSize: 11,
-            whiteSpace: "nowrap",
-            pointerEvents: "none",
-          }}
-        >
-          boşuna basma
-        </div>
-      )}
-    </div>
-  );
-
   const containerStyle: React.CSSProperties = {
     position: "fixed",
     left,
     top,
-    width: 340,
+    width: 420,
     background: "#fff",
     borderRadius: 8,
     boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
     color: "#222",
     fontSize: 13,
     zIndex,
-    overflow: "hidden",
     ...(sticker
       ? {
           border: "3px solid white",
@@ -94,7 +50,47 @@ export default function AdPopup({
 
   return (
     <div className={`popup-enter ${stickerClass} ${pulseClass}`} style={containerStyle}>
-      {closeBtn}
+      <div
+        style={{
+          position: "absolute",
+          top: 6,
+          right: 6,
+          width: 24,
+          height: 24,
+          background: "#e74c3c",
+          borderRadius: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "default",
+          zIndex: 2,
+        }}
+        onMouseEnter={() => setTooltip(true)}
+        onMouseLeave={() => setTooltip(false)}
+      >
+        <span style={{ color: "#fff", fontSize: 14, fontWeight: "bold", lineHeight: 1 }}>
+          ✕
+        </span>
+        {tooltip && (
+          <div
+            style={{
+              position: "absolute",
+              top: 28,
+              right: 0,
+              background: "#333",
+              color: "#fff",
+              padding: "4px 10px",
+              borderRadius: 4,
+              fontSize: 11,
+              whiteSpace: "nowrap",
+              pointerEvents: "none",
+              zIndex: 10,
+            }}
+          >
+            boşuna basma kapanmaz
+          </div>
+        )}
+      </div>
       <div
         style={{
           padding: "28px 16px 16px 16px",
@@ -109,8 +105,8 @@ export default function AdPopup({
               src={leftImage}
               alt=""
               style={{
-                width: 80,
-                height: 80,
+                width: 90,
+                height: 90,
                 objectFit: "cover",
                 borderRadius: 8,
               }}
@@ -123,7 +119,7 @@ export default function AdPopup({
               src={rightImage}
               alt=""
               style={{
-                width: 80,
+                width: 120,
                 height: 80,
                 objectFit: "cover",
                 borderRadius: 8,
