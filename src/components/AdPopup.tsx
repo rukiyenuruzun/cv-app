@@ -50,6 +50,24 @@ export default function AdPopup({
 
   return (
     <div className={`popup-enter ${stickerClass} ${pulseClass}`} style={containerStyle}>
+      {/* REKLAM etiketi */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          background: "linear-gradient(90deg, #e74c3c, #c0392b)",
+          color: "#fff",
+          fontSize: 10,
+          fontWeight: 700,
+          padding: "3px 10px",
+          borderRadius: "8px 0 8px 0",
+          zIndex: 3,
+          letterSpacing: 1,
+        }}
+      >
+        REKLAM
+      </div>
       <div
         style={{
           position: "absolute",

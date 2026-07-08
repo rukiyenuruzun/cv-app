@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface EscapeBubbleProps {
   label: string;
@@ -10,16 +10,16 @@ interface EscapeBubbleProps {
 
 export default function EscapeBubble({ label, onCatch, disabled }: EscapeBubbleProps) {
   const [pos, setPos] = useState({ x: 0, y: 0 });
-  const [visible, setVisible] = useState(true);
-  const initialized = useRef(false);
+  const posRef = useRef(pos);
+  const initDone = useRef(false);
 
   useEffect(() => {
-    if (!initialized.current) {
-      setPos({
-        x: window.innerWidth / 2 - 80,
-        y: window.innerHeight / 2 - 30,
-      });
-      initialized.current = true;
+    if (!initDone.current) {
+      const x = window.innerWidth / 2 - 80;
+      const y = window.innerHeight / 2 - 30;
+      setPos({ x, y });
+      posRef.current = { x, y };
+      initDone.current = true;
     }
   }, []);
 
@@ -29,6 +29,7 @@ export default function EscapeBubble({ label, onCatch, disabled }: EscapeBubbleP
     const h = window.innerHeight;
     const bw = 180;
     const bh = 50;
+    const oldPos = posRef.current;
     let newX: number, newY: number;
     let tries = 0;
     do {
@@ -37,18 +38,13 @@ export default function EscapeBubble({ label, onCatch, disabled }: EscapeBubbleP
       tries++;
     } while (
       tries < 20 &&
-      Math.abs(newX - pos.x) < 120 &&
-      Math.abs(newY - pos.y) < 60
+      Math.abs(newX - oldPos.x) < 150 &&
+      Math.abs(newY - oldPos.y) < 80
     );
-    const oldX = pos.x;
-    const oldY = pos.y;
     setPos({ x: newX, y: newY });
-    setVisible(false);
-    setTimeout(() => {
-      setVisible(true);
-      onCatch(oldX, oldY);
-    }, 50);
-  }, [pos, onCatch, disabled]);
+    posRef.current = { x: newX, y: newY };
+    onCatch(oldPos.x, oldPos.y);
+  }, [disabled, onCatch]);
 
   return (
     <div
@@ -56,8 +52,8 @@ export default function EscapeBubble({ label, onCatch, disabled }: EscapeBubbleP
         position: "fixed",
         left: pos.x,
         top: pos.y,
-        transition: "left 0.08s ease, top 0.08s ease",
-        opacity: visible ? 1 : 0,
+        transition: "left 0.15s ease, top 0.15s ease",
+        opacity: disabled ? 0 : 1,
         pointerEvents: disabled ? "none" : "auto",
         zIndex: 9999,
       }}
@@ -65,8 +61,8 @@ export default function EscapeBubble({ label, onCatch, disabled }: EscapeBubbleP
     >
       <button
         style={{
-          padding: "12px 28px",
-          fontSize: 16,
+          padding: "14px 32px",
+          fontSize: 17,
           fontWeight: 700,
           color: "#fff",
           background: "#14181c",
@@ -74,11 +70,8 @@ export default function EscapeBubble({ label, onCatch, disabled }: EscapeBubbleP
           borderRadius: 30,
           cursor: "pointer",
           whiteSpace: "nowrap",
-          textShadow: "0 0 4px rgba(0,0,0,0.5)",
-          ...(!disabled ? { animation: "glow-pulse 1.2s ease-in-out infinite" } : {}),
         }}
         className={!disabled ? "bubble-glow" : ""}
-        onClick={() => {}}
       >
         {label}
       </button>

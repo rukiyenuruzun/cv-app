@@ -36,9 +36,9 @@ export default function FinalModal({ onClose }: FinalModalProps) {
         style={{
           background: "#1c2329",
           borderRadius: 12,
-          width: 960,
+          width: 1140,
           maxWidth: "95vw",
-          maxHeight: "90vh",
+          maxHeight: "92vh",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
@@ -81,8 +81,8 @@ export default function FinalModal({ onClose }: FinalModalProps) {
         >
           <div
             style={{
-              width: 400,
-              minWidth: 350,
+              width: 500,
+              minWidth: 450,
               padding: 24,
               display: "flex",
               flexDirection: "column",

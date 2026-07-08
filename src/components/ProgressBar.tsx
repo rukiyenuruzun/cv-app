@@ -15,9 +15,10 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
         bottom: 0,
         left: 0,
         right: 0,
-        height: 6,
-        background: "#2a3a4a",
+        height: 10,
+        background: "#1a1a1a",
         zIndex: 10001,
+        borderTop: "1px solid #333",
       }}
     >
       <div
@@ -25,20 +26,21 @@ export default function ProgressBar({ current, total }: ProgressBarProps) {
           position: "relative",
           height: "100%",
           width: `${pct}%`,
-          background: "#e74c3c",
+          background: "linear-gradient(90deg, #e74c3c, #c0392b)",
           transition: "width 0.5s ease",
+          boxShadow: "0 0 10px rgba(231, 76, 60, 0.6)",
         }}
       >
         <div
           style={{
             position: "absolute",
-            right: -6,
-            top: -4,
-            width: 14,
-            height: 14,
+            right: -8,
+            top: -3,
+            width: 16,
+            height: 16,
             background: "#e74c3c",
             borderRadius: "50%",
-            boxShadow: "0 0 6px rgba(231, 76, 60, 0.6)",
+            boxShadow: "0 0 12px rgba(231, 76, 60, 0.8)",
           }}
         />
       </div>

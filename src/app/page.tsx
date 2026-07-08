@@ -5,6 +5,7 @@ import EscapeBubble from "@/components/EscapeBubble";
 import AdPopup from "@/components/AdPopup";
 import ProgressBar from "@/components/ProgressBar";
 import FinalModal from "@/components/FinalModal";
+import TopBar from "@/components/TopBar";
 import { cvData, sectionOrder, bubbleLabels } from "@/data/cvData";
 
 export default function Home() {
@@ -54,6 +55,7 @@ export default function Home() {
         fontFamily: "'Inter', sans-serif",
       }}
     >
+      <TopBar />
       {popups.length > 0 && (
         <ProgressBar current={popups.length} total={sectionOrder.length} />
       )}
@@ -65,14 +67,21 @@ export default function Home() {
 
         const zBase = 1000 + idx;
 
-        const baseLeft = typeof window !== "undefined" ? (window.innerWidth - 660) / 2 : 100;
-        const baseTop = typeof window !== "undefined" ? (window.innerHeight - 500) / 2 : 100;
+        const regions = [
+          { x: 0.05, y: 0.05 },
+          { x: 0.45, y: 0.1 },
+          { x: 0.25, y: 0.35 },
+          { x: 0.55, y: 0.45 },
+          { x: 0.05, y: 0.5 },
+        ];
+        const r = regions[idx] || { x: 0.1, y: 0.1 };
+        const ww = typeof window !== "undefined" ? window.innerWidth : 1200;
+        const wh = typeof window !== "undefined" ? window.innerHeight : 800;
+        const leftOffset = ww * r.x;
+        const topOffset = wh * r.y;
 
-        const leftOffset = baseLeft + idx * 40;
-        const topOffset = baseTop + idx * 60;
-
-        const clampedLeft = Math.max(20, Math.min(leftOffset, window.innerWidth - 660));
-        const clampedTop = Math.max(20, Math.min(topOffset, window.innerHeight - 200));
+        const clampedLeft = Math.max(10, Math.min(leftOffset, ww - 660));
+        const clampedTop = Math.max(10, Math.min(topOffset, wh - 350));
 
         return (
           <AdPopup
@@ -181,9 +190,7 @@ export default function Home() {
                   ))}
                 </div>
 
-                <p style={{ fontSize: 12, color: "#999", marginTop: 8, fontStyle: "italic" }}>
-                  yetmedi mi? bir tane daha var...
-                </p>
+              
               </div>
             )}
 
@@ -268,7 +275,7 @@ export default function Home() {
 }
 
 function SkillWord({ text, index }: { text: string; index: number }) {
-  const delay = index * 60;
+  const delay = index * 25;
   return (
     <span
       className="skill-pop"
