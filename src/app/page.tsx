@@ -65,17 +65,14 @@ export default function Home() {
 
         const zBase = 1000 + idx;
 
-        let leftOffset = p.x;
-        let topOffset = p.y;
+        const baseLeft = typeof window !== "undefined" ? (window.innerWidth - 660) / 2 : 100;
+        const baseTop = typeof window !== "undefined" ? (window.innerHeight - 500) / 2 : 100;
 
-        if (idx > 0) {
-          const prev = popups[idx - 1];
-          leftOffset = prev.x + (idx % 2 === 0 ? 30 : -30);
-          topOffset = prev.y + 80;
-        }
+        const leftOffset = baseLeft + idx * 40;
+        const topOffset = baseTop + idx * 60;
 
-        const clampedLeft = Math.max(40, Math.min(leftOffset, window.innerWidth - 560));
-        const clampedTop = Math.max(40, Math.min(topOffset, window.innerHeight - 300));
+        const clampedLeft = Math.max(20, Math.min(leftOffset, window.innerWidth - 660));
+        const clampedTop = Math.max(20, Math.min(topOffset, window.innerHeight - 200));
 
         return (
           <AdPopup
@@ -94,25 +91,25 @@ export default function Home() {
           >
             {p.id === "profile" && (
               <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#e74c3c", margin: "0 0 8px 0" }}>
+                <h3 style={{ fontSize: 22, fontWeight: 700, color: "#e74c3c", margin: "0 0 10px 0" }}>
                   {section.label}
                 </h3>
-                <p style={{ fontSize: 15, fontWeight: 600, margin: 0 }}>
+                <p style={{ fontSize: 19, fontWeight: 600, margin: 0 }}>
                   {cvData.profile.name}
                 </p>
-                <p style={{ fontSize: 13, color: "#555", margin: "3px 0" }}>
+                <p style={{ fontSize: 16, color: "#555", margin: "5px 0" }}>
                   {cvData.profile.title}
                 </p>
-                <p style={{ fontSize: 13, color: "#555", margin: "3px 0" }}>
+                <p style={{ fontSize: 16, color: "#555", margin: "5px 0" }}>
                   {cvData.profile.university}
                 </p>
-                <p style={{ fontSize: 13, color: "#555", margin: "3px 0" }}>
+                <p style={{ fontSize: 16, color: "#555", margin: "5px 0" }}>
                   {cvData.profile.location}
                 </p>
-                <p style={{ fontSize: 12, color: "#3498db", margin: "3px 0" }}>
+                <p style={{ fontSize: 14, color: "#3498db", margin: "5px 0" }}>
                   {cvData.profile.email}
                 </p>
-                <p style={{ fontSize: 12, color: "#888", margin: "3px 0" }}>
+                <p style={{ fontSize: 14, color: "#888", margin: "5px 0" }}>
                   {cvData.profile.language}
                 </p>
               </div>
@@ -120,22 +117,22 @@ export default function Home() {
 
             {p.id === "education" && (
               <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#2ecc71", margin: "0 0 8px 0" }}>
+                <h3 style={{ fontSize: 22, fontWeight: 700, color: "#2ecc71", margin: "0 0 10px 0" }}>
                   {section.label}
                 </h3>
-                <p style={{ fontSize: 15, fontWeight: 600, margin: 0 }}>
+                <p style={{ fontSize: 19, fontWeight: 600, margin: 0 }}>
                   {cvData.education.school}
                 </p>
-                <p style={{ fontSize: 13, color: "#555", margin: "3px 0" }}>
+                <p style={{ fontSize: 16, color: "#555", margin: "5px 0" }}>
                   {cvData.education.department}
                 </p>
-                <p style={{ fontSize: 13, color: "#555", margin: "3px 0" }}>
+                <p style={{ fontSize: 16, color: "#555", margin: "5px 0" }}>
                   {cvData.education.period}
                 </p>
-                <p style={{ fontSize: 12, color: "#888", margin: "3px 0" }}>
+                <p style={{ fontSize: 14, color: "#888", margin: "5px 0" }}>
                   {cvData.education.detail}
                 </p>
-                <p style={{ fontSize: 12, marginTop: 6 }}>
+                <p style={{ fontSize: 15, marginTop: 8 }}>
                   <strong>Dersler:</strong>{" "}
                   {cvData.education.courses.join(", ")}
                 </p>
@@ -144,47 +141,47 @@ export default function Home() {
 
             {p.id === "skills" && (
               <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#3498db", margin: "0 0 8px 0" }}>
+                <h3 style={{ fontSize: 22, fontWeight: 700, color: "#3498db", margin: "0 0 10px 0" }}>
                   {section.label}
                 </h3>
 
-                <p style={{ fontSize: 12, fontWeight: 600, color: "#e74c3c", margin: "0 0 4px 0" }}>
+                <p style={{ fontSize: 14, fontWeight: 600, color: "#e74c3c", margin: "0 0 6px 0" }}>
                   Programlama Dilleri
                 </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginBottom: 8 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
                   {cvData.skills.languages.map((s, i) => (
                     <SkillWord key={s} text={s} index={i} />
                   ))}
                 </div>
 
-                <p style={{ fontSize: 12, fontWeight: 600, color: "#e74c3c", margin: "0 0 4px 0" }}>
+                <p style={{ fontSize: 14, fontWeight: 600, color: "#e74c3c", margin: "0 0 6px 0" }}>
                   Frameworkler / Kütüphaneler
                 </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginBottom: 8 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
                   {cvData.skills.frameworks.map((s, i) => (
                     <SkillWord key={s} text={s} index={10 + i} />
                   ))}
                 </div>
 
-                <p style={{ fontSize: 12, fontWeight: 600, color: "#e74c3c", margin: "0 0 4px 0" }}>
+                <p style={{ fontSize: 14, fontWeight: 600, color: "#e74c3c", margin: "0 0 6px 0" }}>
                   Araçlar / Platformlar
                 </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 4, marginBottom: 8 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 12 }}>
                   {cvData.skills.tools.map((s, i) => (
                     <SkillWord key={s} text={s} index={20 + i} />
                   ))}
                 </div>
 
-                <p style={{ fontSize: 12, fontWeight: 600, color: "#e74c3c", margin: "0 0 4px 0" }}>
+                <p style={{ fontSize: 14, fontWeight: 600, color: "#e74c3c", margin: "0 0 6px 0" }}>
                   Diller
                 </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {cvData.skills.spoken.map((s, i) => (
                     <SkillWord key={s} text={s} index={30 + i} />
                   ))}
                 </div>
 
-                <p style={{ fontSize: 10, color: "#999", marginTop: 6, fontStyle: "italic" }}>
+                <p style={{ fontSize: 12, color: "#999", marginTop: 8, fontStyle: "italic" }}>
                   yetmedi mi? bir tane daha var...
                 </p>
               </div>
@@ -192,28 +189,28 @@ export default function Home() {
 
             {p.id === "projects" && (
               <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#f39c12", margin: "0 0 8px 0" }}>
+                <h3 style={{ fontSize: 22, fontWeight: 700, color: "#f39c12", margin: "0 0 10px 0" }}>
                   {section.label}
                 </h3>
                 {cvData.projects.map((proj, pi) => (
                   <div
                     key={pi}
                     style={{
-                      marginBottom: 10,
-                      paddingBottom: 8,
+                      marginBottom: 14,
+                      paddingBottom: 10,
                       borderBottom:
                         pi < cvData.projects.length - 1
                           ? "1px solid #eee"
                           : "none",
                     }}
                   >
-                    <p style={{ fontSize: 14, fontWeight: 600, margin: 0 }}>
+                    <p style={{ fontSize: 18, fontWeight: 600, margin: 0 }}>
                       {proj.title}
                     </p>
-                    <p style={{ fontSize: 12, color: "#888", margin: "3px 0" }}>
+                    <p style={{ fontSize: 14, color: "#888", margin: "4px 0" }}>
                       {proj.tech}
                     </p>
-                    <p style={{ fontSize: 12, color: "#555", margin: 0 }}>
+                    <p style={{ fontSize: 14, color: "#555", margin: 0 }}>
                       {proj.description}
                     </p>
                   </div>
@@ -223,28 +220,28 @@ export default function Home() {
 
             {p.id === "volunteering" && (
               <div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: "#9b59b6", margin: "0 0 8px 0" }}>
+                <h3 style={{ fontSize: 22, fontWeight: 700, color: "#9b59b6", margin: "0 0 10px 0" }}>
                   {section.label}
                 </h3>
-                <p style={{ fontSize: 14, fontWeight: 600, margin: 0 }}>
+                <p style={{ fontSize: 18, fontWeight: 600, margin: 0 }}>
                   {cvData.volunteering.organization}
                 </p>
-                <p style={{ fontSize: 14, fontWeight: 600, margin: "6px 0" }}>
+                <p style={{ fontSize: 18, fontWeight: 600, margin: "8px 0" }}>
                   {cvData.volunteering.project}
                 </p>
-                <p style={{ fontSize: 13, color: "#555", margin: "3px 0" }}>
+                <p style={{ fontSize: 16, color: "#555", margin: "4px 0" }}>
                   {cvData.volunteering.role}
                 </p>
-                <p style={{ fontSize: 12, color: "#555", margin: "3px 0" }}>
+                <p style={{ fontSize: 14, color: "#555", margin: "4px 0" }}>
                   {cvData.volunteering.description}
                 </p>
-                <div style={{ marginTop: 8, display: "flex", justifyContent: "center" }}>
+                <div style={{ marginTop: 12, display: "flex", justifyContent: "center" }}>
                   <img
                     src="/images/volunteering.jpg"
                     alt=""
                     style={{
-                      width: 110,
-                      height: 110,
+                      width: 160,
+                      height: 160,
                       objectFit: "cover",
                       borderRadius: 8,
                       border: "3px solid white",
@@ -280,9 +277,9 @@ function SkillWord({ text, index }: { text: string; index: number }) {
         display: "inline-block",
         background: "#3498db",
         color: "#fff",
-        padding: "3px 10px",
+        padding: "6px 14px",
         borderRadius: 4,
-        fontSize: 12,
+        fontSize: 15,
         fontWeight: 600,
       }}
     >

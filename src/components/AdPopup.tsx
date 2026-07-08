@@ -29,12 +29,12 @@ export default function AdPopup({
     position: "fixed",
     left,
     top,
-    width: 520,
+    width: 640,
     background: "#fff",
     borderRadius: 8,
     boxShadow: "0 4px 20px rgba(0,0,0,0.5)",
     color: "#222",
-    fontSize: 13,
+    fontSize: 15,
     zIndex,
     ...(sticker
       ? {
@@ -93,10 +93,10 @@ export default function AdPopup({
       </div>
       <div
         style={{
-          padding: "28px 16px 16px 16px",
+          padding: "32px 20px 20px 20px",
           display: "flex",
           flexDirection: "column",
-          gap: 10,
+          gap: 14,
         }}
       >
         {leftImage && (
@@ -105,8 +105,8 @@ export default function AdPopup({
               src={leftImage}
               alt=""
               style={{
-                width: 130,
-                height: 130,
+                width: 200,
+                height: 200,
                 objectFit: "cover",
                 borderRadius: 8,
               }}
@@ -119,8 +119,8 @@ export default function AdPopup({
               src={rightImage}
               alt=""
               style={{
-                width: 180,
-                height: 120,
+                width: 280,
+                height: 180,
                 objectFit: "cover",
                 borderRadius: 8,
                 ...(sticker
